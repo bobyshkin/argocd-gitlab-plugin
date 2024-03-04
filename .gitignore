@@ -1,0 +1,11 @@
+argocd-gitlab-plugin
+RELEASE_CHANGELOG.md
+bin
+.DS_Store
+test
+local
+cover.out
+
+# Project workspaces
+.idea
+.vscode

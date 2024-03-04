@@ -1,0 +1,21 @@
+# Default values for argocd-gitlab-plugin.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                                   7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * *
+
+schedule: "0 * * * *" # Every hour
+
+image:
+  repository: registry.gitlab.com/requestrefused/argocd-gitlab-plugin
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the "latest".
+  tag: ""

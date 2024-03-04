@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: {{ .Chart.Name }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              envFrom:
+                - secretRef:
+                    name: {{ .Chart.Name }}
+          restartPolicy: Never
+          serviceAccountName: {{ .Chart.Name }}-sa
+      completions: 1
+      parallelism: 1
+      ttlSecondsAfterFinished: 7200
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
